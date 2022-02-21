@@ -1,25 +1,25 @@
 %%==================================================
-%% chapter01.tex for BIT Master Thesis
-%% modified by yang yating
-%% version: 0.1
-%% last update: Dec 25th, 2016
+%% chapter02.tex for BIT Master Thesis
 %%==================================================
-\chapter{基于GeoHash的矢量地图}
+\chapter{相关工作}
+本章对本文研究内容的相关工作进行简要介绍。首先是基于以太坊的树状区块链；第二是GeoHash地理信息，第三是出租车调度系统的发展现状，第四是导航算法
 
-Geohash 是由 Gustavo Niemeyer 和 G.M. Morton 发明的一种地理编码系统，它将地理位置编码为一个固定长度的字符串，被广泛应用于基于地理位置的应用中。
 
-\section{基于GeoHash的矢量地图展示}
-GeoHash用在区块链应用里的原因，优点描述，缺点分析以及不足，未来应用的可能。
-\subsection{基于GeoHash的地图存储}
-将矢量地图数据以GeoHash形式存到区块链上的原理、优点分析和改进空间。
-\subsection{基于GeoHash的矢量地图实现放缩和拖动功能}
-描述放缩和拖动功能的实现原理，解释GeoHash矢量地图的渲染步骤。
+\section{基于以太坊的树状区块链}
+介绍区块链的性能瓶颈，引出树状区块链的研究目的、简要介绍原理。
+\subsection{传统区块链的特点和不足}
+\subsection{树状区块链的特性}
 
-……\upcite{Takahashi1996Structure,Xia2002Analys is,Jiang1989,Mao2000Motion,Feng1998}
-
-\section{基于GeoHash的几何计算优化}
+\section{GeoHash地理信息}
 由于传统计算两个经纬度所表示坐标点距离时需要使用球面距离公式，若在以 GeoHash 为坐标表示的系统中沿用这套算法，则丧失了 GeoHash 带来的计算简便性。利用GeoHash编码的特点进行距离计算，避免了复杂的三角函数和球面计算，并且适用于对小数支持较弱、不提供复杂数学函数计算支持的区块链智能合约编写语言 Solidity。
+\subsection{基于GeoHash的地图}
+将矢量地图数据以GeoHash形式存到区块链上的原理、优点分析和改进空间。
 \subsection{GeoHash几何计算原理}
 介绍GeoHash数格子进行几何距离计算的原理。
-\subsection{GeoHash几何计算方法的优化}
-介绍前缀匹配的思想对GeoHash计算速度的优化原理。
+\subsection{leaflet矢量地图渲染框架}
+介绍leaflet矢量地图渲染框架，以及其对GeoHash数据的支持情况。
+
+\section{出租车调度系统}
+介绍出租车调度系统的研究现状，指出中心化系统的不足，容易引发信息垄断、信息泄露和恶性竞争。
+\section{导航算法}
+介绍导航算法的发展历史和研究现状，分类简要介绍几种导航算法的优缺点，指出区块链应用缺乏导航算法的支持，以及在区块链中将导航算法与GeoHash结合的优点。
