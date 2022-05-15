@@ -9,7 +9,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.75\textwidth]{figures/structure}
+  \includegraphics[width=0.9\textwidth]{figures/structure}
   \caption{出租车调度系统架构图}\label{fig:structure}
 \end{figure}
 % 1. 利用地理位置区块链
@@ -64,11 +64,11 @@
 \section{出租车调度系统流程设计}
 % 出租车调度系统的流程设计，出租车接送客业务的企业研究现状，流程介绍。
 % 出租车调度系统的流程
-首先乘客通过浏览器终端发出乘车请求，将自己的起点和终点传到区块链服务端的智能合约进行记录。智能合约会通过乘客起点的GeoHash获得乘客所在的GeoHash区域，据此进行区域调度（流程如图\ref{fig:region}）来寻找最近的空车，若乘客所在的六位GeoHash区域内没有合适的车辆，则通过GeoHash邻居算法找到乘客起点相邻的8个区域，在这些区域内寻找合适的车辆，然后将最佳匹配的空车的信息通过web3回调返回给乘客端。
+首先乘客通过浏览器终端发出乘车请求，将自己的起点和终点传到区块链服务端的智能合约进行记录。智能合约会通过乘客起点的GeoHash获得乘客所在的GeoHash区域，据此进行区域调度（流程如图\ref{fig:region}）来寻找最近的空车。通过GeoHash邻居算法找到与乘客起点所在区域相邻的8个区域，加上乘客起点所在的区域共9个区域，在这些区域内寻找合适的车辆，然后将最佳匹配的空车的信息通过web3回调返回给乘客端。
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.9\textwidth]{figures/区域调度车辆流程}
+  \includegraphics[width=1.0\textwidth]{figures/区域调度车辆流程}
   \caption{区域调度车辆流程}\label{fig:region}
 \end{figure}
 
@@ -76,7 +76,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.55\textwidth]{figures/解决调度冲突}
+  \includegraphics[width=0.6\textwidth]{figures/解决调度冲突}
   \caption{解决调度冲突流程}\label{fig:conflict}
 \end{figure}
 
@@ -86,7 +86,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.35\textwidth]{figures/按导航执行业务}
+  \includegraphics[width=0.4\textwidth]{figures/按导航执行业务}
   \caption{车辆执行业务流程}\label{fig:routing}
 \end{figure}
 
@@ -102,12 +102,13 @@
 
 乘客端的自动化python脚本可以通过设置参数来决定打车乘客的数量。自动化脚本控制每个乘客根据自己的账户信息登录系统，然后按照各自的起止点需求和发布时间来提出打车请求。在智能合约成功记录乘客的起止点需求后，自动化脚本监听到反馈，会控制乘客端开始申请车辆调度。匹配到的车辆在确定接单后，会前来上车点接到乘客，并将乘客送到目的地。自动化脚本监听到乘客到达目的地，会执行确认和支付订单的操作，然后退出浏览器终端，视为乘客完成了一次完整业务。
 
-车辆端的自动化脚本控制每辆车根据自己的账户id登录系统并初始化自己车辆的GeoHash位置，在智能合约进行记录。自动初始化完成后，车辆即可通过监听智能合约的通知来获得乘客订单并选择是否确认接受。车辆可根据即时的乘客需求来执行业务流程。此外，自动化脚本可以控制车辆的工作时长，超出工作时长后，相关车辆将会退出系统，智能合约也不再为其提供乘客订单。
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.9\textwidth]{figures/自动化流程}
+  \includegraphics[width=1.0\textwidth]{figures/自动化流程}
   \caption{自动化模拟流程}\label{fig:auto}
 \end{figure}
 
+车辆端的自动化脚本控制每辆车根据自己的账户id登录系统并初始化自己车辆的GeoHash位置，在智能合约进行记录。自动初始化完成后，车辆即可通过监听智能合约的通知来获得乘客订单并选择是否确认接受。车辆可根据即时的乘客需求来执行业务流程。此外，自动化脚本可以控制车辆的工作时长，超出工作时长后，相关车辆将会退出系统，智能合约也不再为其提供乘客订单。
+
 \section{本章小结}
-本章第一节先在整体上介绍了本文的出租车调度系统结构，然后根据结构图分别描述了车辆端和乘客端的终端功能、区块链后台的结构和功能。接着，本章在第二节描述了出租车调度系统的流程设计，系统的流程包括乘客端的发单、付款等业务运行流程和车辆端的确认接单、路径规划等业务运行流程。本文的系统运行实验是基于本章的业务流程，在模拟的网格道路和真实的地图道路上分别进行了实验。
+本章先在整体上介绍了本文的出租车调度系统结构，然后根据结构图分别描述了车辆端和乘客端的终端功能、区块链后台的结构和功能是如何设计的。接着，本章描述了出租车调度系统的流程设计，系统的流程包括乘客端的发单、付款等业务运行流程和车辆端的确认接单、路径规划等业务运行流程。本文的系统运行实验是基于本章的业务流程，在模拟的网格道路和真实的地图道路上分别进行了实验。
